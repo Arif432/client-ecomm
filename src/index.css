@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.red {
+  color: red;
+}
+.product-card {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 10px 0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.product-card h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+.product-card p {
+  margin: 5px 0;
+}
+#allProducts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.deleteBtn{
+  background-color: red;
+}
