@@ -24,7 +24,7 @@ export default function LoginForm() {
                     await navigate('/admin');
                     alert('Login success admin');
                 } else if (res.data.role === 'customer') {
-                    await navigate('/allProducts');
+                    await navigate('/');
                     alert('Login success customer');
                 }
             }
