@@ -67,22 +67,21 @@ const ProductDetailPage = () => {
     try {
       const response = await axios.post(
         `http://localhost:5000/cart/addToCart/${id}`,
-        {
-          quantity,
-        },
+        {},  // Empty data object if your API doesn't require additional payload
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            'token': token,
           },
         }
       );
-
-      // Handle the response as needed
       console.log('Added to cart:', response.data);
+      alert("added to cart");
     } catch (error) {
       console.error('Error adding to cart:', error);
+      alert("failed cart add");
     }
   };
+  
 
   return (
     <div className="container mx-auto my-8 text-center">
@@ -91,7 +90,7 @@ const ProductDetailPage = () => {
       ) : product ? (
         <div className="flex flex-col md:flex-row">
           {/* Image Slider */}
-          <div className="w-full max-w-screen-md md:w-1/2 mx-auto md:mx-0">
+          <div className="items-center justify-center">
             {product?.images?.map((image, index) => (
               <div
                 key={index}
@@ -128,8 +127,6 @@ const ProductDetailPage = () => {
                 <span className="font-bold">Description:</span> 
                 {product.description}
               </div>
-             
-             
               <div className="mb-4 text-center">
                 <span className="font-bold">ISBN:</span> {product.isbn}
               </div>
@@ -148,7 +145,7 @@ const ProductDetailPage = () => {
                 </button>
               </div>
 
-              <div className="mb-4 text-center flex flex-row">
+              <div className="mb-4 items-center justify-center flex flex-row">
                 <button onClick={addToCart} className="bg-blue-800 text-white px-4 py-2 rounded-lg mr-4">
                     Add to cart
                 </button>
@@ -158,7 +155,6 @@ const ProductDetailPage = () => {
               </div>
             </div>
           </div>
-          
         </div>
       ) : (
         <p className="text-red-500">Product details not found.</p>

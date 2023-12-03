@@ -41,7 +41,6 @@ export default function User() {
   const handleEdit = () => {
     setIsEditing(true);
   };
-  
 
   const handleSave = async () => {
     try {
