@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
-import Navbar from '../Navbar';
 
 export default function LoginForm() {
     const [email,setEmail] = useState()
@@ -52,7 +51,7 @@ export default function LoginForm() {
                 <button type="submit" className="block w-full bg-blue-500 text-white py-2 rounded">Login</button>
             </form>
             <Link to="/register" className="block w-full py-2 rounded">register</Link>
-
+            <Link to='/forget' className="block w-full text-blue-500 underline text-right">ForgotPassword</Link>
         </div>
     </div>
   );
