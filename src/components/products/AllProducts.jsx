@@ -13,9 +13,9 @@ const ProductCard = ({ product }) => {
           className="mb-4 w-full h-40 object-cover rounded-lg"
         />
         <h2 className="text-xl font-bold mb-2">{product.title}</h2>
-      </Link>
       <p className="text-gray-700 mb-2">Author: {product.author}</p>
       <p className="text-green-700 font-bold">${product.price}</p>
+      </Link>
     </div>
   );
 };

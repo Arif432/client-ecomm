@@ -55,16 +55,33 @@ function Cart() {
     alert(`Decrement product with ID ${productId}`);
   };
 
-  const handleDeleteProduct = (productId) => {
-    // Implement the logic to delete a specific product from the cart
-    // Make an API call to update the cart
-    alert(`Delete product with ID ${productId}`);
+
+  const handleDeleteProduct = async (productId) => {
+    try {
+      const apiUrl = `http://localhost:5000/cart/removeFromCart/${productId}`;
+      await axios.delete(apiUrl, {
+        headers: {
+          'token': token,
+        },
+      });
+    } catch (error) {
+      console.error('There was a problem with the Axios request:', error);
+      alert('Failed to delete product. Please try again.');
+    }
   };
 
-  const handleDeleteCart = () => {
-    // Implement the logic to delete the entire cart
-    // Make an API call to clear the cart
-    alert("Delete entire cart");
+  const handleDeleteCart = async () => {
+    try {
+      const apiUrl = `http://localhost:5000/cart/deleteAllFromCart`;
+      await axios.delete(apiUrl, {
+        headers: {
+          'token': token,
+        },
+      });
+      alert("cart deleted")
+    } catch (error) {
+      alert('Failed to delete cart. Please try again.');
+    }
   };
 
   return (
@@ -107,15 +124,22 @@ function Cart() {
               </div>
             </div>
           ))}
-          <button
-            className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
-            onClick={handleDeleteCart}
-          >
-            Delete Entire Cart
-          </button>
+          {cartData.cart.products.length === 0 && (
+            <h1>Nothing to show in your cart</h1>
+            )}
+          {cartData.cart.products.length > 0 && (
+              <button
+              className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
+              onClick={handleDeleteCart}
+            >
+              Delete Entire Cart
+            </button>)}
         </div>
       ) : (
-        <p>Loading cart...</p>
+        <div>
+           <p>Loading cart...</p>
+        </div>
+       
       )}
     </div>
   );

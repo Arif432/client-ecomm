@@ -88,9 +88,9 @@ const ProductDetailPage = () => {
       {loading ? (
         <p className="text-xl">Loading product details...</p>
       ) : product ? (
-        <div className="flex flex-col md:flex-row">
+        <div className="flex flex-col md:flex-row justify-center items-center">
           {/* Image Slider */}
-          <div className="items-center justify-center">
+          <div className='mx-12'>
             {product?.images?.map((image, index) => (
               <div
                 key={index}
