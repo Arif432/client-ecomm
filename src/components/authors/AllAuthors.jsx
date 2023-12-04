@@ -4,21 +4,21 @@ import axios from 'axios';
 
 function AuthorCard({ author }) {
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg">
-        <Link to={`/author/${author._id}`}>
-            {author.authorImage ? (
-            <img src={author.authorImage} alt={author.name} style={{ width: '100%', height: '200px', objectFit: 'cover', borderTopLeftRadius: '8px', borderTopRightRadius: '8px' }} />
-            ) : (
-            <div style={{ backgroundColor: '#eee', height: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <p>No Image</p>
-            </div>
-            )}
-            <div style={{ padding: '16px' }}>
-            <h2 style={{ margin: '0' }}>{author.name}</h2>
-            <p style={{ marginTop: '8px', color: '#666' }}>{author.introduction}</p>
-            </div>
-        </Link>
-    </div>
+    <Link to={`/author/${author._id}`}>
+      <div key={author._id} style={{ width: '300px', margin: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '8px', overflow: 'hidden' }}>
+        {author.authorImage ? (
+          <img src={author.authorImage} alt={author.name} style={{ width: '100%', height: '200px', objectFit: 'cover', borderTopLeftRadius: '8px', borderTopRightRadius: '8px' }} />
+        ) : (
+          <div style={{ backgroundColor: '#eee', height: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <p>No Image</p>
+          </div>
+        )}
+        <div style={{ padding: '16px' }}>
+          <h2 style={{ margin: '0' }}>{author.name}</h2>
+          <p style={{ marginTop: '8px', color: '#666' }}>{author.introduction}</p>
+        </div>
+      </div>
+    </Link>
   );
 }
 
