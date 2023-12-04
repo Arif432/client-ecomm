@@ -5,12 +5,12 @@ import axios from 'axios';
 
 function SingleAuthor() {
   const [author, setAuthor] = useState({});
-  const { authorId } = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchAuthor = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/authors/getSingleAuthor/${authorId}`);
+        const response = await axios.get(`http://localhost:5000/authors/getSingleAuthor/${id}`);
         setAuthor(response.data);
       } catch (error) {
         console.error('Error fetching author data:', error);
@@ -18,13 +18,14 @@ function SingleAuthor() {
     };
 
     fetchAuthor();
-  }, [authorId]);
+  }, [id]);
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
-      {/* <div style={{ width: '300px', marginRight: '20px' }}> */}
+    <div className='bg-blue-300 rad' style={{borderRadius:'12px', flex:1 , alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
         <h1>Author Detail</h1>
-        {/* {author.authorImage ? (
+      <div className="flex">
+      <div style={{ width: '300px', marginRight: '20px' }}>
+        {author.authorImage ? (
           <img
             src={author.authorImage}
             alt={author.name}
@@ -39,8 +40,9 @@ function SingleAuthor() {
       <div style={{ textAlign: 'left', maxWidth: '600px' }}>
         <h1>{author.name}</h1>
         <p style={{ fontSize: '16px', color: '#666', marginTop: '10px' }}>{author.introduction}</p>
-      </div> */}
-    </div>
+      </div>
+      </div>
+      </div>
   );
 }
 

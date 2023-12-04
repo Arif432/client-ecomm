@@ -5,6 +5,7 @@ import Logout from './components/authentication/Logout'
 import SignupForm from './components/authentication/SignupForm'
 import UpdatePassword from './components/authentication/UpdatePassword'
 import AllAuthors from './components/authors/AllAuthors'
+import SingleAuthor from './components/authors/SingleAuthor'
 import Cart from './components/carts/Cart'
 import AllProducts from './components/products/AllProducts'
 import Dashboard from './components/products/Dashboard'
@@ -29,7 +30,7 @@ function App() {
        
        {/* Authors */}
        <Route path='/getAllAuthors' element={<AllAuthors/>}> </Route>
-        <Route path='/author/:id' element={<AllAuthors/>}> </Route>
+        <Route path='/author/:id' element={<SingleAuthor/>}> </Route>
 
 
         {/* PRODUCTS  */}

@@ -8,7 +8,7 @@ const ProductCard = ({ product }) => {
     <div className="bg-white p-6 rounded-lg shadow-lg">
       <Link to={`/product/${product._id}`}>
         <img
-          src={product.images[0]}
+          src={product?.images[0]}
           alt={product.title}
           className="mb-4 w-full h-40 object-cover rounded-lg"
         />
