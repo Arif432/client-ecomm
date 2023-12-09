@@ -35,22 +35,22 @@ export default function LoginForm() {
   return (
       <div className="container mx-auto mt-20">
         {/* <Navbar/> */}
-        <div className="max-w-md mx-auto bg-white rounded p-8 shadow-lg" >
-            <h2 className="text-2xl font-bold mb-4">Login</h2>
+        <div className="max-w-md mx-auto rounded p-8 shadow-lg" style={{background:"#ece9e9"}}>
+            <h2 className="text-2xl font-bold mb-4" style={{color:"#333333"}}>Login</h2>
             <form id="loginForm" className="space-y-4" onSubmit={handleSubmit}>
                 <div>
-                    <label for="email" className="block mb-1">Email:</label>
+                    <label for="email" className="block mb-1" style={{color:"#333333"}}>Email:</label>
                     <input type="email" id="email" name="email" className="w-full px-3 py-2 border border-gray-300 rounded"
                     onChange={(E)=>setEmail(E.target.value)}/>
                 </div>
                 <div>
-                    <label for="password" className="block mb-1">Password:</label>
+                    <label for="password" className="block mb-1" style={{color:"#333333"}}>Password:</label>
                     <input type="password" id="password" name="password" className="w-full px-3 py-2 border border-gray-300 rounded"
                     onChange={(E)=>setPassword (E.target.value)}/>
                 </div>
                 <button type="submit" className="block w-full bg-blue-500 text-white py-2 rounded">Login</button>
             </form>
-            <Link to="/register" className="block w-full py-2 rounded">register</Link>
+            <Link to="/register" className="block w-full py-2 rounded" style={{color:"#333333"}}>register</Link>
             <Link to='/forget' className="block w-full text-blue-500 underline text-right">ForgotPassword</Link>
         </div>
     </div>

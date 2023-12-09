@@ -12,7 +12,8 @@ import Dashboard from './components/products/Dashboard'
 import ProductDetailPage from './components/products/ProductDetail'
 import User from './components/products/User'
 import {Routes , Route , BrowserRouter} from "react-router-dom"
-
+import AllGenres from './components/genres/AllGenres'
+import SingleGenre from './components/genres/SingleGenre'
 
 function App() {
 
@@ -32,6 +33,9 @@ function App() {
        <Route path='/getAllAuthors' element={<AllAuthors/>}> </Route>
         <Route path='/author/:id' element={<SingleAuthor/>}> </Route>
 
+      {/* genres */}
+        <Route path='/getAllGenres' element={<AllGenres/>}> </Route>
+        <Route path='/getSingleGenre/:id' element={<SingleGenre/>}> </Route>
 
         {/* PRODUCTS  */}
         {/* <Route path="/allProducts" element={<AllProducts/>}></Route> */}
