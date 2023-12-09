@@ -21,7 +21,7 @@ function SingleAuthor() {
   }, [id]);
 
   return (
-    <div className='bg-blue-300 rad' style={{borderRadius:'12px', flex:1 , alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+    <div style={{borderRadius:'12px', flex:1 , alignItems: 'center', justifyContent: 'center', padding: '20px', background:"#ece9e9"}}>
         <h1>Author Detail</h1>
       <div className="flex">
       <div style={{ width: '300px', marginRight: '20px' }}>

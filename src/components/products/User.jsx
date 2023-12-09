@@ -100,7 +100,7 @@ export default function User() {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="min-h-screen" style={{background:"#ece9e9"}}>
       {/* Header */}
       <header className="bg-blue-500 text-white py-4 flex justify-between items-center">
           <button onClick={handleLogout} className="bg-gray-500 text-white px-4 py-2 mt-2 ml-4">
@@ -137,16 +137,17 @@ export default function User() {
         </div>
 
         {loading ? (
-          <p className="text-center text-gray-600">Loading...</p>
+          <p className="text-cente" style={{ color:"#333333"}}>Loading...</p>
         ) : userData ? (
-          <div className="max-w-md mx-auto bg-white shadow-lg rounded-md overflow-hidden">
+          <div className="max-w-md mx-auto shadow-lg rounded-md overflow-hidden"
+          style={{backgroundColor:"azure"}}>
             <div className="p-6">
-              <h2 className="text-2xl font-bold mb-4">User Information</h2>
+              <h2 className="text-2xl font-bold mb-4" style={{ color:"#333333"}}>User Information</h2>
              
              
               {isEditing ? (
                 <div className="mb-4">
-                  <label htmlFor="name" className="text-gray-600">
+                  <label htmlFor="name" style={{ color:"#333333"}}>
                     Name:
                     <input
                       type="text"
@@ -157,7 +158,7 @@ export default function User() {
                       className="border-b-2 border-blue-500 ml-2 focus:outline-none"
                     />
                   </label>
-                  <label htmlFor="email" className="text-gray-600 block mt-4">
+                  <label htmlFor="email" className="block mt-4" style={{ color:"#333333"}}>
                     Email:
                     <input
                       type="text"
@@ -168,7 +169,7 @@ export default function User() {
                       className="border-b-2 border-blue-500 ml-2 focus:outline-none"
                     />
                   </label>
-                  <p className="text-gray-600 block mt-4">Role: {userData.role}</p>
+                  <p className="block mt-4" style={{ color:"#333333"}}>Role: {userData.role}</p>
                   <button onClick={handleSave} className="bg-blue-500 text-white px-4 py-2 mt-4">
                     Save
                   </button>
@@ -176,9 +177,9 @@ export default function User() {
                 </div>
               ) : (
                 <div className="mb-4">
-                  <p className="text-gray-600">Name: {userData.name}</p>
-                  <p className="text-gray-600">Email: {userData.email}</p>
-                  <p className="text-gray-600">Role: {userData.role}</p>
+                  <p style={{ color:"#333333"}}>Name: {userData.name}</p>
+                  <p style={{ color:"#333333"}}>Email: {userData.email}</p>
+                  <p style={{ color:"#333333"}}>Role: {userData.role}</p>
                   <button onClick={handleEdit} className="bg-blue-500 text-white px-4 py-2 mt-4">
                     Edit
                   </button>

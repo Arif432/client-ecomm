@@ -10,14 +10,20 @@ const Navbar = () => {
           EveryBookShop
         </Link>
         <div className="flex space-x-4">
-          <Link to="/cart" className="text-white hover:text-gray-300">
-            Go to Cart
+          <Link to="/getAllAuthors" className="text-white hover:text-gray-300">
+            Authors
           </Link>
           <Link to="/getAllGenres" className="text-white hover:text-gray-300">
             Genres
           </Link>
+          <Link to="/cart" className="text-white hover:text-gray-300">
+            My Cart
+          </Link>
           <Link to="/my-orders" className="text-white hover:text-gray-300">
-            My Orders
+            Orders
+          </Link>
+          <Link to="/getUserInfo" className="text-white hover:text-gray-300">
+            Profile
           </Link>
         </div>
       </div>
