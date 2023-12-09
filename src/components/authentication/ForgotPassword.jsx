@@ -9,9 +9,13 @@ export default function ForgotPassword() {
 
     const handleForgotPassword = async (e) => {
         e.preventDefault()
+        if (!email) {
+          alert('Please enter your email address');
+          return;
+        }
         try {
           const response = await axios.post('http://localhost:5000/user/forgot-password', {
-            email: email // Assuming 'email' is the state variable containing the user's email
+            email: email 
           });
           console.log('Password reset request successful', response.data.link);
           await navigate('/updatePassword', {state : { resetLink: response.data.link}});
@@ -28,7 +32,7 @@ export default function ForgotPassword() {
             <form id="loginForm" className="space-y-4" onSubmit={handleForgotPassword}>
                 <div>
                     <label for="email" className="block mb-1" style={{color:"#333333"}}>Email:</label>
-                    <input type="email" id="email" name="email" className="w-full px-3 py-2 border border-gray-300 rounded"
+                    <input  style={{background:"#F0EEEE"}} type="email" id="email" name="email" className="w-full px-3 py-2 border border-gray-300 rounded"
                     onChange={(E)=>setEmail(E.target.value)}/>
                 </div>
                 <button type="submit" className="block w-full bg-blue-500 text-white py-2 rounded">send email</button>

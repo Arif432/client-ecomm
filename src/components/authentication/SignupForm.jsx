@@ -24,9 +24,7 @@ export default function SignupForm() {
                 navigate('/login');
             })
             .catch(error => {
-                console.log('====================================');
                 console.log('Error:', error);
-                console.log('====================================');
                 if (error.response) {
                     console.log('Server Error:', error.response.data);
                     alert(error.response.data.error);

@@ -12,7 +12,7 @@ export default function UpdatePassword() {
         e.preventDefault()
         try {
           const response = await axios.post(resetLink, {
-            password: password // Assuming 'email' is the state variable containing the user's email
+            password: password
           });
           console.log('Password reset request successful', response.data);
         } catch (error) {
