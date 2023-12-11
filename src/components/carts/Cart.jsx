@@ -7,25 +7,26 @@ function Cart() {
   const [cookies, removeCookie] = useCookies(['token']);
   const token = cookies['token'];
 
-  useEffect(() => {
-    const fetchCart = async () => {
-      try {
-        const response = await axios.get('http://localhost:5000/cart/getCart', {
-          headers: {
-            'token': token,
-          },
-        });
+  const fetchCart = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/cart/getCart', {
+        headers: {
+          'token': token,
+        },
+      });
 
-        if (response.status === 200) {
-          setCartData(response.data);
-        } else {
-          console.error('Error fetching cart:', response.statusText);
-        }
-      } catch (error) {
-        console.error('Error fetching cart:', error.message);
-        alert("cart not found")
+      if (response.status === 200) {
+        setCartData(response.data);
+      } else {
+        console.error('Error fetching cart:', response.statusText);
       }
-    };
+    } catch (error) {
+      console.error('Error fetching cart:', error.message);
+      alert("cart not found")
+    }
+  };
+
+  useEffect(() => {
     fetchCart();
   }, [token]);
 
@@ -57,6 +58,7 @@ function Cart() {
 
 
   const handleDeleteProduct = async (productId) => {
+    console.log(productId);
     try {
       const apiUrl = `http://localhost:5000/cart/removeFromCart/${productId}`;
       await axios.delete(apiUrl, {
@@ -68,6 +70,7 @@ function Cart() {
       console.error('There was a problem with the Axios request:', error);
       alert('Failed to delete product. Please try again.');
     }
+    fetchCart();
   };
 
   const handleDeleteCart = async () => {
@@ -82,10 +85,11 @@ function Cart() {
     } catch (error) {
       alert('Failed to delete cart. Please try again.');
     }
+    fetchCart();
   };
 
   return (
-    <div className="container mx-auto my-8 p-8 shadow-lg rounded-xl" style={{background:"#ece9e9"}}>
+    <div className="container mx-auto my-8 p-8 shadow-lg rounded-xl max-w-xl" style={{background:"#ece9e9"}}>
       <h2 className="text-2xl font-bold mb-4" style={{color:"#333333"}}>Your Cart</h2>
       {cartData ? (
         <div>
@@ -94,10 +98,10 @@ function Cart() {
               <div className="flex flex-row">
                 <img
                   src={product?.images[0]}
-                  className="object-cover h-16 w-16 rounded-full mr-4"
+                  className="object-cover h-20 w-16 self-center"
                   alt={product.title}
                 />
-                <div className="flex flex-col">
+                <div className="flex flex-col px-8">
                   <div className="flex flex-row">
                     <h3 className="text-lg font-semibold mb-2" style={{color:"#333333"}}>Title: {product.title}</h3>
                   </div>
