@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { FaCamera, FaTrash,FaBars , FaSearch } from 'react-icons/fa';
 
-const FilterDrawer = ({ minPrice, maxPrice, setMinPrice, setMaxPrice, handleFilter, toggleDrawer, isDrawerOpen }) => {
+const FilterDrawer = ({ minPrice, maxPrice, setMinPrice, setMaxPrice, toggleDrawer, isDrawerOpen, handleFilter }) => {
   return (
     <div className="relative">
       {isDrawerOpen && (
@@ -33,6 +33,7 @@ const FilterDrawer = ({ minPrice, maxPrice, setMinPrice, setMaxPrice, handleFilt
           style={{ backgroundColor: '#a09c9c' }}
           className="text-white rounded p-2 px-4"
           onClick={() => {
+            console.log('clicked');
             handleFilter();
             toggleDrawer();
           }}
@@ -44,7 +45,8 @@ const FilterDrawer = ({ minPrice, maxPrice, setMinPrice, setMaxPrice, handleFilt
   );
 };
 
-const Navbar = () => {
+
+const Navbar = ({ minPrice, maxPrice, setMinPrice, setMaxPrice, handleFilter}) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const toggleDrawer = () => {
@@ -89,7 +91,11 @@ const Navbar = () => {
       <FilterDrawer
         isDrawerOpen={isDrawerOpen}
         toggleDrawer={toggleDrawer}
-        // other props
+        minPrice={minPrice}
+        maxPrice={maxPrice}
+        setMinPrice={setMinPrice}
+        setMaxPrice={setMaxPrice}
+        handleFilter={handleFilter}
       />
     </div>
   );
@@ -116,19 +122,34 @@ const ProductCard = ({ product }) => {
 
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(0);
+  const [minPrice, setMinPrice] = useState(1);
+  const [maxPrice, setMaxPrice] = useState(10000);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [title, setTitle] = useState('');
 
-  useEffect(() => {
+  const getProducts = () => {
+    let queryString = `http://localhost:5000/product/getAllProduct?page=${currentPage}&limit=8`;
+    if (title) {
+      queryString += `&title=${title}`;
+    }
+    if (minPrice) {
+      queryString += `&minPrice=${minPrice}`;
+    }
+    if (maxPrice) {
+      queryString += `&maxPrice=${maxPrice}`;
+    }
     axios
-      .get(`http://localhost:5000/product/getAllProduct?page=${currentPage}&limit=8`)
+    .get(queryString)
       .then((response) => {
         setProducts(response.data.products);
         setTotalPages(response.data.totalPages);
       })
       .catch((error) => console.error('Error fetching products:', error));
+  }
+
+  useEffect(() => {
+   getProducts();
   }, [currentPage]);
 
   const handleFilter = () => {
@@ -143,14 +164,14 @@ const AllProducts = () => {
 
   return (
     <div>
-      <Navbar />
-      <FilterDrawer
-        minPrice={minPrice}
-        maxPrice={maxPrice}
-        setMinPrice={setMinPrice}
-        setMaxPrice={setMaxPrice}
-        handleFilter={handleFilter}
-      />
+      <Navbar
+      minPrice={minPrice}
+      maxPrice={maxPrice}
+      setMinPrice={setMinPrice}
+      setMaxPrice={setMaxPrice}
+      handleFilter={handleFilter}
+       />
+    
       <div className="container mx-auto my-8">
             <h1 className="text-3xl font-bold" style={{ color: "#333333" }}>
               All Products
@@ -161,9 +182,11 @@ const AllProducts = () => {
               type="text"
               placeholder="Search..."
               className="border rounded px-3 py-1 w-28 lg:w-80 md:w-60 sm:w-28 focus:outline-none focus:border-blue-500"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
             <button className="absolute right-0 top-0 mt-2 mr-2">
-              <FaSearch/>
+              <FaSearch onClick={getProducts}/>
             </button>
           </div>
         </div>
