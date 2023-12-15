@@ -5,7 +5,15 @@ import axios from 'axios';
 function AuthorCard({ author }) {
   return (
     <Link to={`/author/${author._id}`}>
-      <div key={author._id} style={{ width: '300px', margin: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', borderRadius: '8px', overflow: 'hidden' }}>
+      <div key={author._id} style={{ 
+        width: '300px', 
+        margin: '30px', 
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
+        borderRadius: '8px', 
+        overflow: 'hidden' ,
+        backgroundColor: "#ece9e9",
+        border: '1px solid #b2b2b2',
+        }}>
         {author.authorImage ? (
           <img src={author.authorImage} alt={author.name} style={{ width: '100%', height: '200px', objectFit: 'cover', borderTopLeftRadius: '8px', borderTopRightRadius: '8px' }} />
         ) : (
@@ -14,8 +22,8 @@ function AuthorCard({ author }) {
           </div>
         )}
         <div style={{ padding: '16px' }}>
-          <h2 style={{ margin: '0' }}>{author.name}</h2>
-          <p style={{ marginTop: '8px', color: '#666' }}>{author.introduction}</p>
+          <h2 style={{ margin: '0' }}>{author.authorName}</h2>
+          {/* <p style={{ marginTop: '8px', color: '#666' }}>{author.introduction}</p> */}
         </div>
       </div>
     </Link>
