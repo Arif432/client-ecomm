@@ -55,7 +55,7 @@ The website is designed to be accessible and user-friendly across various device
    git clone https://github.com/Arif432/server
    cd your-repository
    npm install
-   nodemon start
+   npm run dev
 
 # Future Enhancements
 Implement a payment gateway for secure and seamless online transactions.
